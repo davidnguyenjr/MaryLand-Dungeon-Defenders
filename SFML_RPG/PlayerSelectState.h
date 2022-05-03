@@ -5,6 +5,7 @@
 #include "Gui.h"
 #include "MaryState.h"
 #include "CookieState.h"
+#include "KnittensState.h"
 
 class PlayerSelectState :
 	public State
@@ -16,8 +17,10 @@ private:
 	sf::Font font;
 	sf::Sprite mary;
 	sf::Sprite cookie;
+	sf::Sprite knittens;
 	sf::Texture maryTexture;
 	sf::Texture cookieTexture;
+	sf::Texture knittensTexture;
 
 	sf::RectangleShape btnBackground;
 	std::map<std::string, gui::Button*> buttons;

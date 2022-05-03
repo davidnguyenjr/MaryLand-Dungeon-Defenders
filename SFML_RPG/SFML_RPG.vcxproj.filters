@@ -216,6 +216,9 @@
     <ClCompile Include="CookieState.cpp">
       <Filter>States</Filter>
     </ClCompile>
+    <ClCompile Include="KnittensState.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -366,6 +369,9 @@
       <Filter>States\Old GameStates</Filter>
     </ClInclude>
     <ClInclude Include="CookieState.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="KnittensState.h">
       <Filter>States</Filter>
     </ClInclude>
   </ItemGroup>

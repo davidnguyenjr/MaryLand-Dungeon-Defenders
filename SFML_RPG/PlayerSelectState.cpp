@@ -46,7 +46,7 @@ void PlayerSelectState::initGui()
 		)
 	);
 
-	if (!this->backgroundTexture.loadFromFile("Resources/Images/Backgrounds/bg2.png"))
+	if (!this->backgroundTexture.loadFromFile("Resources/Images/Backgrounds/playerselectionbg.png"))
 	{
 		throw "ERROR::MAIN_MENU_STATE::FAILED_TO_LOAD_BACKGROUND_TEXTURE";
 	}
@@ -89,6 +89,14 @@ void PlayerSelectState::initGui()
 		sf::Color(70, 70, 70, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0)
 	);
 
+	this->buttons["KNITTENS_GAME_STATE"] = new gui::Button(
+		gui::p2pX(15.6f, vm), gui::p2pY(60.f, vm),
+		gui::p2pX(13.f, vm), gui::p2pY(6.f, vm),
+		&this->font, "Knittens", gui::calcCharSize(vm),
+		sf::Color(200, 200, 200, 200), sf::Color(255, 255, 255, 255), sf::Color(20, 20, 20, 50),
+		sf::Color(70, 70, 70, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0)
+	);
+
 	/*this->buttons["SETTINGS_STATE"] = new gui::Button(
 		gui::p2pX(15.6f, vm), gui::p2pY(40.f, vm),
 		gui::p2pX(13.f, vm), gui::p2pY(6.f, vm),
@@ -123,7 +131,7 @@ void PlayerSelectState::initGui()
 	}
 
 	mary.setTexture(maryTexture);
-	mary.setPosition(sf::Vector2f(gui::p2pX(15.6, vm), gui::p2pY(40.f, vm)));
+	mary.setPosition(sf::Vector2f(gui::p2pX(16.8, vm), gui::p2pY(40.f, vm)));
 
 	if (!this->cookieTexture.loadFromFile("Resources/Images/Sprites/Player/cookieplayer_select.png"))
 	{
@@ -132,6 +140,14 @@ void PlayerSelectState::initGui()
 
 	cookie.setTexture(cookieTexture);
 	cookie.setPosition(sf::Vector2f(gui::p2pX(15.3, vm), gui::p2pY(50.f, vm)));
+
+	if (!this->knittensTexture.loadFromFile("Resources/Images/Sprites/Player/knittensplayer_select.png"))
+	{
+		throw "ERROR::MAIN_MENU_STATE::FAILED_TO_LOAD_MARY_TEXTURE";
+	}
+
+	knittens.setTexture(knittensTexture);
+	knittens.setPosition(sf::Vector2f(gui::p2pX(14, vm), gui::p2pY(60.f, vm)));
 }
 
 void PlayerSelectState::resetGui()
@@ -185,7 +201,7 @@ void PlayerSelectState::updateButtons(const float& dt)
 		it.second->update(this->mousePosWindow);
 	}
 
-	//Mary game
+	//Choosing Player's game
 	if (this->buttons["MARY_GAME_STATE"]->isPressed())
 	{
 		this->states->push(new MaryState(this->stateData));
@@ -193,6 +209,10 @@ void PlayerSelectState::updateButtons(const float& dt)
 	if (this->buttons["COOKIE_GAME_STATE"]->isPressed())
 	{
 		this->states->push(new CookieState(this->stateData));
+	}
+	if (this->buttons["KNITTENS_GAME_STATE"]->isPressed())
+	{
+		this->states->push(new KnittensState(this->stateData));
 	}
 
 
@@ -232,6 +252,7 @@ void PlayerSelectState::render(sf::RenderTarget* target)
 
 	target->draw(mary);
 	target->draw(cookie);
+	target->draw(knittens);
 
 	//REMOVE LATER!!!
 	//sf::Text mouseText;
