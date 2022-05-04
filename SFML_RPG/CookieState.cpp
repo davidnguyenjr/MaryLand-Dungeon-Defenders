@@ -133,7 +133,7 @@ void CookieState::initTileMap()
 
 void CookieState::initSystems()
 {
-	this->tts = new TextTagSystem("Fonts/LLPIXEL3.ttf");
+	this->tts = new TextTagSystem("Fonts/LLPIXEL3.ttf"); 
 }
 
 //Constructors / Destructors

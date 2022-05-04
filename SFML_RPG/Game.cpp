@@ -37,6 +37,18 @@ void Game::initWindow()
 
 	this->window->setFramerateLimit(this->gfxSettings.frameRateLimit);
 	this->window->setVerticalSyncEnabled(this->gfxSettings.verticalSync);
+
+	//sf::Image image;
+	//image.loadFromFile("MLDD_icon.ico");
+	////{
+	////	throw("ERROR::ICON::COULD NOT LOAD ICON");
+	////}
+	//this->window->setIcon(32, 32, image.getPixelsPtr());
+
+	
+	
+
+	
 }
 
 void Game::initKeys()
@@ -57,10 +69,10 @@ void Game::initKeys()
 	ifs.close();
 
 //DEBUG REMOVE LATER!
-	for (auto i : this->supportedKeys)
+	/*for (auto i : this->supportedKeys)
 	{
 		std::cout << i.first << " " << i.second << "\n";
-	} 
+	} */
 }
 
 void Game::initStateData()
@@ -160,6 +172,7 @@ void Game::render()
 
 void Game::run()
 {
+	
 	while (this->window->isOpen())
 	{
 		this->updateDt();

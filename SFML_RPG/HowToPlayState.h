@@ -1,27 +1,25 @@
-#ifndef MAINMENUSTATE_H
-#define MAINMENUSTATE_H
+#ifndef HOWTOPLAYSTATE_H
+#define HOWTOPLAYSTATE_H
 
-#include "GameState.h"
-#include "EditorState.h"
-#include "SettingsState.h"
-#include "CreditsState.h"
-#include "PlayerSelectState.h"
-#include "HowToPlayState.h"
+#include "State.h"
 #include "Gui.h"
 
-class MainMenuState :
+class HowToPlayState :
 	public State
 {
 private:
 	//Variables
 	sf::Texture backgroundTexture;
 	sf::RectangleShape background;
-	sf::Font font;
+	sf::Font buttonFont;
+	sf::Font howtoplayFont;
 
 	sf::RectangleShape btnBackground;
 	std::map<std::string, gui::Button*> buttons;
 
 	std::vector<sf::VideoMode> modes;
+
+	sf::Text howtoplayText;
 
 	//Functions
 	void initVariables();
@@ -31,14 +29,14 @@ private:
 	void resetGui();
 
 public:
-	MainMenuState(StateData* state_data);
-	virtual ~MainMenuState();
+	HowToPlayState(StateData* state_data);
+	virtual ~HowToPlayState();
 
 	//Functions
 	void updateInput(const float& dt);
-	void updateButtons();
+	void updateGui(const float& dt);
 	void update(const float& dt);
-	void renderButtons(sf::RenderTarget& target);
+	void renderGui(sf::RenderTarget& target);
 	void render(sf::RenderTarget* target = NULL);
 };
 

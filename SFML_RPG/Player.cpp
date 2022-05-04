@@ -182,6 +182,10 @@ void Player::render(sf::RenderTarget & target, sf::Shader* shader, const sf::Vec
 {
 	if (shader)
 	{
+		if (show_hitbox)
+		{
+			this->hitboxComponent->render(target);
+		}
 		shader->setUniform("hasTexture", true);
 		shader->setUniform("lightPos", light_position);
 		target.draw(this->sprite, shader);
@@ -192,10 +196,14 @@ void Player::render(sf::RenderTarget & target, sf::Shader* shader, const sf::Vec
 	}
 	else 
 	{
+		if (show_hitbox)
+		{
+			this->hitboxComponent->render(target);
+		}
 		target.draw(this->sprite);
 		this->weapon->render(target);
 	}
 	
-	if(show_hitbox)
-		this->hitboxComponent->render(target);
+	/*if(show_hitbox)
+		this->hitboxComponent->render(target);*/
 }

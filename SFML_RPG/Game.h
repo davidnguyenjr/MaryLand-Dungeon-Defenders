@@ -21,6 +21,8 @@ private:
 
 	float gridSize;
 
+	
+
 	//Initialization
 	void initVariables();
 	void initGraphicsSettings();

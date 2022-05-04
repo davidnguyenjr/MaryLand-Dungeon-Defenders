@@ -109,17 +109,20 @@ void Bird1::render(sf::RenderTarget& target, sf::Shader* shader, const sf::Vecto
 {
 	if (shader)
 	{
+		if (show_hitbox)
+			this->hitboxComponent->render(target);
 		shader->setUniform("hasTexture", true);
 		shader->setUniform("lightPos", light_position);
 		target.draw(this->sprite, shader);
 	}
 	else
 	{
+		if (show_hitbox)
+			this->hitboxComponent->render(target);
 		target.draw(this->sprite);
 	}
 
 	target.draw(this->hpBar);
 
-	if (show_hitbox)
-		this->hitboxComponent->render(target);
+	
 }

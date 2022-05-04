@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "MainMenuState.h"
 
+
+
 //Initializer functions
 void MainMenuState::initVariables()
 {
@@ -9,7 +11,7 @@ void MainMenuState::initVariables()
 
 void MainMenuState::initFonts()
 {
-	if (!this->font.loadFromFile("Fonts/LLPIXEL3.ttf"))
+	if (!font.loadFromFile("Fonts/LLPIXEL3.ttf"))
 	{
 		throw("ERROR::MAINMENUSTATE::COULD NOT LOAD FONT");
 	}
@@ -81,29 +83,36 @@ void MainMenuState::initGui()
 		sf::Color(70, 70, 70, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0)
 	);
 
-	this->buttons["SETTINGS_STATE"] = new gui::Button(
+	this->buttons["HOWTOPLAY_STATE"] = new gui::Button(
 		gui::p2pX(15.6f, vm), gui::p2pY(40.f, vm),
+		gui::p2pX(13.f, vm), gui::p2pY(6.f, vm),
+		&this->font, "How to Play", gui::calcCharSize(vm),
+		sf::Color(200, 200, 200, 200), sf::Color(255, 255, 255, 255), sf::Color(20, 20, 20, 50),
+		sf::Color(70, 70, 70, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0));
+
+	this->buttons["SETTINGS_STATE"] = new gui::Button(
+		gui::p2pX(15.6f, vm), gui::p2pY(50.f, vm),
 		gui::p2pX(13.f, vm), gui::p2pY(6.f, vm),
 		&this->font, "Settings", gui::calcCharSize(vm),
 		sf::Color(200, 200, 200, 200), sf::Color(255, 255, 255, 255), sf::Color(20, 20, 20, 50),
 		sf::Color(70, 70, 70, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0));
 
 	this->buttons["EDITOR_STATE"] = new gui::Button(
-		gui::p2pX(15.6f, vm), gui::p2pY(50.f, vm),
+		gui::p2pX(15.6f, vm), gui::p2pY(60.f, vm),
 		gui::p2pX(13.f, vm), gui::p2pY(6.f, vm),
 		&this->font, "Editor", gui::calcCharSize(vm),
 		sf::Color(200, 200, 200, 200), sf::Color(255, 255, 255, 255), sf::Color(20, 20, 20, 50),
 		sf::Color(70, 70, 70, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0));
 
 	this->buttons["CREDITS_STATE"] = new gui::Button(
-		gui::p2pX(15.6f, vm), gui::p2pY(60.f, vm),
+		gui::p2pX(15.6f, vm), gui::p2pY(70.f, vm),
 		gui::p2pX(13.f, vm), gui::p2pY(6.f, vm),
 		&this->font, "Credits", gui::calcCharSize(vm),
 		sf::Color(200, 200, 200, 200), sf::Color(255, 255, 255, 255), sf::Color(20, 20, 20, 50),
 		sf::Color(70, 70, 70, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0));
 
 	this->buttons["EXIT_STATE"] = new gui::Button(
-		gui::p2pX(15.6f, vm), gui::p2pY(75.f, vm),
+		gui::p2pX(15.6f, vm), gui::p2pY(80.f, vm),
 		gui::p2pX(13.f, vm), gui::p2pY(6.f, vm),
 		&this->font, "Quit", gui::calcCharSize(vm),
 		sf::Color(200, 200, 200, 200), sf::Color(255, 255, 255, 255), sf::Color(20, 20, 20, 50),
@@ -171,6 +180,12 @@ void MainMenuState::updateButtons()
 	}
 
 	//Settings
+	if (this->buttons["HOWTOPLAY_STATE"]->isPressed())
+	{
+		this->states->push(new HowToPlayState(this->stateData));
+	}
+
+	//Settings
 	if (this->buttons["SETTINGS_STATE"]->isPressed())
 	{
 		this->states->push(new SettingsState(this->stateData));
@@ -191,8 +206,7 @@ void MainMenuState::updateButtons()
 	//Quit the game
 	if (this->buttons["EXIT_STATE"]->isPressed())
 	{
-		delete this->states->top();
-		this->states->pop();
+		window->close();
 	}
 }
 

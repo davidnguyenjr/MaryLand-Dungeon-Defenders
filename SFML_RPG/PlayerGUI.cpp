@@ -39,6 +39,8 @@ void PlayerGUI::initHPBar()
 		1.f, 8.3f, 10.4f, 2.8f,
 		sf::Color::Red, 180,
 		this->vm, &this->font);
+
+	
 }
 
 void PlayerGUI::initPlayerTabs(sf::VideoMode &vm, sf::Font &font, Player &player)
